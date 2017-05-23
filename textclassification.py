@@ -306,7 +306,7 @@ if __name__ == "__main__":
     
     os.chdir(parent_path) 
     sns_plot = sn.heatmap(confusion_matrix, annot=True, cmap="YlGnBu", square=True)
-    sns_plot.figure.savefig("graphical_outputs/confussion_matrix.png")
+    sns_plot.figure.savefig("visualizations/confussion_matrix.png")
      
     # model performance
     TPR, PPV = classification_model_performance(confusion_matrix)

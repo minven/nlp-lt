@@ -11,3 +11,37 @@
 2017-05-23 10:14:35,249 [INFO] tokenization: Testing 6.01 seconds
 2017-05-23 10:15:44,014 [INFO] tokenization: Testing 5.19 seconds
 2017-05-23 10:15:44,241 [INFO] tokenization: Recall = 0.9271991166728009 and Precision = 0.9473118279569892
+2017-05-23 13:43:45,060 [INFO] tokenization: categories ['criminals', 'movies', 'music', 'science', 'sports']
+2017-05-23 13:45:50,446 [INFO] tokenization: Tokenization 125.38 seconds
+2017-05-23 13:45:50,450 [INFO] tokenization: Train documents 759
+2017-05-23 13:45:50,453 [INFO] tokenization: Test documents 80
+2017-05-23 13:47:52,885 [INFO] tokenization: BagOfWorfds 122.43 seconds
+2017-05-23 13:47:53,104 [INFO] tokenization: BagOfWorfds matrix size 136.12 MB
+2017-05-23 13:47:53,105 [INFO] tokenization: BagOfWorfds matrix shape (759, 22409)
+2017-05-23 13:47:53,769 [INFO] tokenization: Reduction 0.66 seconds
+2017-05-23 13:47:54,627 [INFO] tokenization: Reduced matrix size 62.16 MB
+2017-05-23 13:47:54,629 [INFO] tokenization: Reduced matrix shape (759, 10229)
+2017-05-23 13:48:00,019 [INFO] tokenization: Testing 5.39 seconds
+2017-05-23 13:57:42,920 [INFO] tokenization: categories ['criminals', 'movies', 'music', 'science', 'sports']
+2017-05-23 13:59:37,459 [INFO] tokenization: Tokenization 114.53 seconds
+2017-05-23 13:59:37,460 [INFO] tokenization: Train documents 750
+2017-05-23 13:59:37,463 [INFO] tokenization: Test documents 87
+2017-05-23 14:01:40,979 [INFO] tokenization: BagOfWorfds 123.51 seconds
+2017-05-23 14:01:41,205 [INFO] tokenization: BagOfWorfds matrix size 132.80 MB
+2017-05-23 14:01:41,208 [INFO] tokenization: BagOfWorfds matrix shape (750, 22126)
+2017-05-23 14:01:41,957 [INFO] tokenization: Reduction 0.75 seconds
+2017-05-23 14:01:42,800 [INFO] tokenization: Reduced matrix size 60.99 MB
+2017-05-23 14:01:42,801 [INFO] tokenization: Reduced matrix shape (750, 10157)
+2017-05-23 14:01:51,097 [INFO] tokenization: Testing 8.29 seconds
+2017-05-23 14:04:18,131 [INFO] tokenization: categories ['criminals', 'movies', 'music', 'science', 'sports']
+2017-05-23 14:06:12,626 [INFO] tokenization: Tokenization 114.48 seconds
+2017-05-23 14:06:12,629 [INFO] tokenization: Train documents 771
+2017-05-23 14:06:12,631 [INFO] tokenization: Test documents 67
+2017-05-23 14:08:32,806 [INFO] tokenization: BagOfWorfds 140.17 seconds
+2017-05-23 14:08:33,026 [INFO] tokenization: BagOfWorfds matrix size 140.97 MB
+2017-05-23 14:08:33,028 [INFO] tokenization: BagOfWorfds matrix shape (771, 22847)
+2017-05-23 14:08:33,730 [INFO] tokenization: Reduction 0.70 seconds
+2017-05-23 14:08:34,541 [INFO] tokenization: Reduced matrix size 64.46 MB
+2017-05-23 14:08:34,543 [INFO] tokenization: Reduced matrix shape (771, 10442)
+2017-05-23 14:08:38,344 [INFO] tokenization: Testing 3.80 seconds
+2017-05-23 14:08:38,600 [INFO] tokenization: Recall = 0.9634920634920636 and Precision = 0.966013071895425
