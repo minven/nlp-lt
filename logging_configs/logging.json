@@ -1,0 +1,31 @@
+{
+    "version": 1,
+    "disable_existing_loggers": "False",
+    "formatters": {
+        "standard": {
+            "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+        }
+    },
+    "handlers": {
+        "local": {
+            "level":"INFO",
+            "class":"logging.handlers.RotatingFileHandler",
+            "filename":"text_classification.log",
+            "formatter":"standard",
+            "maxBytes":5242880,
+            "backupCount":20
+        },
+        "console": {
+            "level":"DEBUG",
+            "class":"logging.StreamHandler",
+            "formatter":"standard"
+        }
+    },
+    "loggers": {
+        "tokenization": {
+            "handlers": ["local", "console"],
+            "level": "DEBUG",
+            "propagate": "True"
+        }
+    }
+}
