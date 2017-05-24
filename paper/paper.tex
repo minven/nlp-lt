@@ -121,11 +121,82 @@ Main idea of classification is to convert unseen text to vectorized token repres
 
 
 \subsection{Classification results}
-Classification performance is measured using confusion matrix where rows are true category and columns predicted category. As we see from figure \ref{confusion matrix} We tried to predict category for 13 movies and got 1 criminals, 1 sports , 11 movies prediction. In overall such approach reach above $90 \%$  recall and $90 \%$ precision.
+Classification performance is measured using confusion matrix where rows are true category and columns predicted category. As we see from figure \ref{confusion matrix} We tried to predict category for 21 movies and got 1 criminals, 1 science, 19 movies prediction. In overall such approach reach above $90 \%$  recall and $90 \%$ precision.
 \begin{figure}[H]
-  \includegraphics[width=\linewidth]{images/confussion_matrix.png}
+  \includegraphics[width=\linewidth]{images/confussion_matrix.pdf}
   \caption{Classification performance}
   \label{confusion matrix}
+\end{figure}
+
+\section{Topics extraction}
+Latent semantic analysis (LSA) is a technique in natural language processing, in particular distributional semantics, of analyzing relationships between a set of documents and the terms they contain by producing a set of concepts related to the documents and terms. Let's mark tfidf matrix as $X$, after applying singular value decomposition (SVD) we get 
+\begin{equation}
+\label{LSA}
+A =U\Sigma V^T
+\end{equation}
+Let $A$ be a $m \times n$ matrix with column vectors $a_1, a_2, ..., a_n$. In the SVD of, U will be $m \times m$, $\Sigma$ will be $m \times n$ and $V$ will be $n \times n$. Dimensionality reduction by keeping  $k$ biggest  values from $\Sigma$ i.e $\sigma_1,..,\sigma_k \neq 0$; $\sigma_{r+1},...,\sigma_n = 0$. Therefore columns of $U$ beyond $k^{th}$ column and rows of V beyond $k^{th}$ row do not contribute to A and are usually omitted, leaving U an  $m \times k$ matrix, $\Sigma$ and  $k \times k$ diagonal matrix and $V$ an  $r \times n$ matrix. After hat terms are represented by the row vectors of the $m \times k$ matrix \ref{hiddenterms}
+
+\begin{equation}
+\label{hiddenterms}
+Q = U_k\Sigma_k
+\end{equation}
+whereas the documents by the column vectors the $k \times n$ matrix \ref{hiddendocs}
+ \begin{equation}
+\label{hiddendocs}
+W =\Sigma_kV_k^T
+\end{equation}
+
+Topics can represented as rows from matrix $U^T$ $(k \times m)$, where rows are principal components, columns are tokens. 
+\begin{enumerate}
+\item Extract first $x$ rows (components).
+\item Sort each row weights in descending order.
+\item Extract first $y$ highest weights and map them to the known tokens.
+\end{enumerate}
+
+
+ Example below shows $6$ components with $10$ tokens for each component \ref{fig:MainComponents}. From these results we can detect most important words and intuitively guess topic.
+
+
+
+\begin{figure}[H]
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{images/0_component_lsa.pdf}
+		\caption{Movies, Music}
+		\label{fig:sfig1}
+	\end{subfigure}%
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{images/1_component_lsa.pdf}
+		\caption{Movies, Criminals}
+		\label{fig:sfig2}
+	\end{subfigure}
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{images/2_component_lsa.pdf}
+		\caption{Movies, Criminals}
+		\label{fig:sfig3}
+	\end{subfigure}
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{images/3_component_lsa.pdf}
+		\caption{Music, Sportsi}
+		\label{fig:sfig4}
+	\end{subfigure}
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{images/4_component_lsa.pdf}
+		\caption{Science}
+		\label{fig:sfig5}
+	\end{subfigure}
+	\begin{subfigure}{.6\textwidth}
+		\centering
+		\includegraphics[width=1\linewidth]{images/5_component_lsa.pdf}
+		\caption{Criminals}
+		\label{fig:sfig6}
+	\end{subfigure}
+	\caption{Main first 6 components}
+	\label{fig:MainComponents}
 \end{figure}
 
 

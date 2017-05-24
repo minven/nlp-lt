@@ -306,7 +306,7 @@ if __name__ == "__main__":
     
     os.chdir(parent_path) 
     sns_plot = sn.heatmap(confusion_matrix, annot=True, cmap="YlGnBu", square=True)
-    sns_plot.figure.savefig("visualizations/confussion_matrix.png")
+    sns_plot.figure.savefig("visualizations/confussion_matrix.pdf")
      
     # model performance
     TPR, PPV = classification_model_performance(confusion_matrix)
@@ -317,6 +317,7 @@ if __name__ == "__main__":
     pickle.dump(document_ids_train, open("pickles/document_ids_train.p", "wb"))
     pickle.dump(bag_of_words_matrix, open("pickles/bag_of_words_matrix.p", "wb"))
     pickle.dump(document_titles_train, open("pickles/document_titles_train.p", "wb"))
+    
 #    rez = {}
 #    for document_id in documents_train.keys():
 #        thrashold = max_values[document_id] -0.05

@@ -45,3 +45,27 @@
 2017-05-23 14:08:34,543 [INFO] tokenization: Reduced matrix shape (771, 10442)
 2017-05-23 14:08:38,344 [INFO] tokenization: Testing 3.80 seconds
 2017-05-23 14:08:38,600 [INFO] tokenization: Recall = 0.9634920634920636 and Precision = 0.966013071895425
+2017-05-24 09:35:02,494 [INFO] tokenization: categories ['criminals', 'movies', 'music', 'science', 'sports']
+2017-05-24 09:37:03,293 [INFO] tokenization: Tokenization 120.79 seconds
+2017-05-24 09:37:03,295 [INFO] tokenization: Train documents 763
+2017-05-24 09:37:03,297 [INFO] tokenization: Test documents 74
+2017-05-24 09:38:51,136 [INFO] tokenization: BagOfWorfds 107.84 seconds
+2017-05-24 09:38:51,355 [INFO] tokenization: BagOfWorfds matrix size 137.15 MB
+2017-05-24 09:38:51,357 [INFO] tokenization: BagOfWorfds matrix shape (763, 22461)
+2017-05-24 09:38:52,124 [INFO] tokenization: Reduction 0.77 seconds
+2017-05-24 09:38:52,826 [INFO] tokenization: Reduced matrix size 62.88 MB
+2017-05-24 09:38:52,827 [INFO] tokenization: Reduced matrix shape (763, 10293)
+2017-05-24 09:38:57,291 [INFO] tokenization: Testing 4.46 seconds
+2017-05-24 09:38:57,585 [INFO] tokenization: Recall = 0.93 and Precision = 0.9423076923076923
+2017-05-24 09:43:37,908 [INFO] tokenization: categories ['criminals', 'movies', 'music', 'science', 'sports']
+2017-05-24 09:45:35,912 [INFO] tokenization: Tokenization 118.00 seconds
+2017-05-24 09:45:35,914 [INFO] tokenization: Train documents 751
+2017-05-24 09:45:35,917 [INFO] tokenization: Test documents 86
+2017-05-24 09:47:29,775 [INFO] tokenization: BagOfWorfds 113.86 seconds
+2017-05-24 09:47:30,106 [INFO] tokenization: BagOfWorfds matrix size 134.27 MB
+2017-05-24 09:47:30,108 [INFO] tokenization: BagOfWorfds matrix shape (751, 22340)
+2017-05-24 09:47:30,961 [INFO] tokenization: Reduction 0.85 seconds
+2017-05-24 09:47:31,776 [INFO] tokenization: Reduced matrix size 61.32 MB
+2017-05-24 09:47:31,777 [INFO] tokenization: Reduced matrix shape (751, 10198)
+2017-05-24 09:47:39,426 [INFO] tokenization: Testing 7.65 seconds
+2017-05-24 09:47:39,835 [INFO] tokenization: Recall = 0.9655677655677655 and Precision = 0.9679487179487178

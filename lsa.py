@@ -13,7 +13,7 @@ Created on Mon Apr 24 21:31:55 2017
 # A typical example of the weighting of the elements of the matrix is tf-idf 
 # the weight of an element of the matrix is proportional to the number of times
 # the terms appear in each document, where rare terms are upweighted to reflect their relative importance.
-#This mitigates the problem of identifying synonymy, as the rank lowering is
+# This mitigates the problem of identifying synonymy, as the rank lowering is
 # expected to merge the dimensions associated with terms that have similar meanings. 
 
 
@@ -74,7 +74,7 @@ class LSA(object):
             pyplot.yticks(positions, terms)
             pyplot.xlabel('Weight')
             pyplot.title('Strongest terms for component %d' % (i))
-            pyplot.savefig("visualizations/{}_component_lsa.png".format(i))
+            pyplot.savefig("visualizations/{}_component_lsa.pdf".format(i))
             pyplot.show()
 
     def explore_bag_of_words_matrix(self):
@@ -134,7 +134,7 @@ class LSA(object):
         print(svd.explained_variance_ratio_) 
         print(svd.explained_variance_ratio_.sum())
         
-    def RandomizedSVD(self):
+    def randomizedSVD(self):
         # http://scikit-learn.org/stable/modules/decomposition.html#truncated-singular-value-decomposition-and-latent-semantic-analysis
         # http://stackoverflow.com/questions/31523575/get-u-sigma-v-matrix-from-truncated-svd-in-scikit-learn
         U, S, V = randomized_svd(self.bag_of_words_matrix.T, 
@@ -146,8 +146,6 @@ class LSA(object):
         self.V = V
         self.tokens_representation = np.matrix(U) * np.diag(S)
         self.documents_representation = (np.diag(S) * np.matrix(V)).T
-#        transformed_matrix = np.dot(np.dot(U, linalg.diagsvd(S, len(V), len(V))) ,V)
-#        X_train_lsa_my = np.dot(U, linalg.diagsvd(S, len(V), len(V)))
     
     
     def SVD(self):
@@ -160,7 +158,7 @@ class LSA(object):
         self.V = V[:self.dimensions,:]
         #transformed_matrix = np.dot(np.dot(U, linalg.diagsvd(S, len(self.bag_of_words_matrix), len(V))) ,V)
 
-    def Gensim(self):
+    def gensim(self):
         # https://radimrehurek.com/gensim/dist_lsi.html
         # https://radimrehurek.com/gensim/models/lsimodel.html
         corpus = corpora.MmCorpus('../lda/lda_sources/documents_corpus.mm')        
@@ -177,7 +175,7 @@ if __name__ == "__main__":
 
 #    #gensim approach
 #    lsa_instance = LSA(200)
-#    gensim_model = lsa_instance.Gensim()
+#    gensim_model = lsa_instance.gensim()
 #    U_gensim = gensim_model.projection.u
 #    S_gensim = gensim_model.projection.s
 #    US_gensim = np.dot(U_gensim, linalg.diagsvd(S_gensim,200, 200))
@@ -190,7 +188,7 @@ if __name__ == "__main__":
     lsa_instance = LSA(dimensions=150)
     documents_mapping = lsa_instance.documents_mapping
     tokens_mapping = lsa_instance.tokens_mapping
-    lsa_instance.RandomizedSVD()
+    lsa_instance.randomizedSVD()
     U = lsa_instance.U
     S = lsa_instance.S
     V = lsa_instance.V
