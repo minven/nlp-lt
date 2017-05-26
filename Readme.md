@@ -11,3 +11,8 @@ Implementation details and futher information is stored at paper/paper.pdf
 Classification performance is measured using confusion matrix where rows are
 true category and columns predicted category. Furthermore such approach reach above 90% recall and 90% precision.
 ![GitHub Logo](/visualizations/confussion_matrix.png)
+
+# Topics extraction
+Implementation details and futher information is stored at paper/paper.pdf
+Main results are presnted below:
+![GitHub Logo](/visualizations/main_term_components.png)

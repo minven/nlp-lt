@@ -27,13 +27,13 @@
 \author{Mindaugas Venckus}
 
 \maketitle
-
+The main intention of this research is to study and learn natural language processing (NLP) principals  for Lithuanian language. It is interesting to analyze classical NLP methods and see how they work on it, so in this work I implemented text classification, topics extraction, search query and clustering ideas.
 \begin{abstract}
-Main intention of this research is to study and learn natural language processing (NLP) principals  for Lithuanian language. It is interesting to implement classical nlp methods and see how they work on it. In this work text classification, topics extraction, search query, clustering ideas were implemented.
+
 \end{abstract}
 
 \section{Data}
-Data analysis can't be established without having textual data, due to my work started from getting raw data from most popular news website www.delfi.lt. I decided to crawl articles from 5 categories (Criminals, Music, Movies, Sports, Science) such approach helps me to understand better the performance of NLP methods. Below is presented basic statistics of data we analysed  \ref{DocumentsTable}.
+Data analysis can't be established without having textual data, due to that my work started from getting raw data from most popular news website www.delfi.lt. I decided to crawl articles from 5 categories (Criminals, Music, Movies, Sports, Science) such approach helps me to understand the performance of NLP methods better. Below basic statistics of data that was analyzed is presented  \ref{DocumentsTable}.
 \begin{table}[htb]
 \centering
 \caption{Documents}
@@ -50,7 +50,7 @@ sports    & 136             \\ \hline
 \end{table}
 \section{Preprocessing}
  
-We need to convert unstructured data (raw text) to structured (matrix based approach) such transformation is friendly for machine learning algorithms. So my preprocessing goal is to convert unstructured data to  structured matrix where rows - document id, columns - token, values - term frequency inverse document frequency (tfidf) statistic.
+At first we need to convert unstructured data (raw text) to structured (matrix based approach) -  such transformation is friendly for machine learning algorithms. Preprocessing goal is to convert unstructured data to  structured matrix where rows are document id, columns - token, values - term frequency inverse document frequency (TFIDF) statistic.
 
 
 \renewcommand{\kbldelim}{(}% Left delimiter
@@ -67,9 +67,9 @@ We need to convert unstructured data (raw text) to structured (matrix based appr
 \]
 
 \subsection{Tokenization}
-Suppose we have raw text bellow: \\
+Suppose we have the sample of raw text bellow: \\
 \textsc{Pranešimas gautas apie 14.14 val. Kaune, Švenčionių g. prie Nemuno upės ant kranto rastas žmogaus kūnas su galimai durtine žaizda krūtinėje. Aplinkybės tikslinamos.}
-Tokenization is the process of breaking a text into smaller words, phrases, symbols. In our cases we are trying to break text into the words.
+Tokenization is the process of breaking a text into smaller words, phrases and symbols. In this case we are trying to break text into the words.
 
 \begin{enumerate}
 \item  Break text into the words using regex expression \text{W+} which breaks text by any non-word character.
@@ -84,14 +84,14 @@ Text above is transformed to list representation
 \textsc{t = [aplinkyb, durtin, gaut, kaun, krant, krūtin, kūn, nemun, praneš, rast, tikslinam, up ,švenčion, žaizd, žmog]}
 
 
-\subsection{tfidf}
-tfidf \ref{tfidf} is statistic which measure token importance in document with relation to the document of corpus.
+\subsection{TFIDF}
+TFIDF \ref{tfidf} is statistic which measure token importance in document with relation to the document of corpus.
 \begin{equation}
 \label{tfidf}
 tfidf(t, d, D) = tf(t, d) \cdot  idf(t,D)
 \end{equation}
 
-where term frequency $ tf(t, d)$ - is a measure of how many times token $t$ occurs in the document $d$ and inverse document frequency $idf(t, D) $ is a measure of how much information the word provides, that is, whether the term is common or rare across all documents.
+where term frequency $ tf(t, d)$  is a measure of how many times token $t$ occurs in the document $d$ and inverse document frequency $idf(t, D) $ is a measure of how much information the word provides, that is, whether the term is common or rare across all documents.
 \begin{equation}
 idf(t, D) = \log \frac{N}{|d\in D : t \in d|}
 \label{idf}
@@ -101,27 +101,27 @@ with
 \item $N$ - total number of documents in corpus $N = |D|$
 \item $|d\in D : t \in d|$ - number of documents where term $t$ appears.
 \end{enumerate}
-tfidf intuitive explanation -  importance increases proportionally to the number of times a word appears in the document but is offset by the frequency of the word in the corpus.
+TFIDF intuitive explanation -  importance increases proportionally to the number of times a word appears in the document but is offset by the frequency of the word in the corpus.
 
-\subsection{tfidf matrix construction}
-Main steps before matrix construction are:
+\subsection{TFIDF matrix construction}
+Main steps before TFIDF matrix construction are:
 \begin{enumerate}
 \item For each document $90\%$ - train set, $10\%$ - test set.
 \begin{enumerate}
 \item Collect tokens for each document separately.
 \item Collect unique tokens.
 \item Collect document categories (will be used for classification performance measuring)
-\item Collect document titles(will be used for clustering)
+\item Collect document titles (will be used for clustering)
 \end{enumerate}
 \end{enumerate}
 
-Construct zeros matrix where rows are all documents and columns unique tokens. Fill matrix values with tfidf statistic. Additionally we reduce matrix dimension by removing tokens (entire column) which appears rarely among documents, more precisely  once a time.
+TFIDF matrix rows are all documents and columns unique tokens filled with  TFIDF statistic. Additionally we reduce matrix dimension by removing tokens (entire column) which appears among documents rarely, more precisely  once a time.
 \section{Classification}
-Main idea of classification is to convert unseen text to vectorized token representations where tokens are taken from tfidf matrix and do multiplication between vector and mentioned matrix. After that use k-nearest approach to make prediction for unseen document by taking mode of most similar $k$ documents categories.
+Main idea of classification is to convert unseen text to vectorized token representations where tokens are taken from TFIDF matrix and do multiplication between vector and mentioned matrix. After that use k-nearest neighbors approach to make prediction for unseen document by taking mode of most similar $k$ documents categories.
 
 
 \subsection{Classification results}
-Classification performance is measured using confusion matrix where rows are true category and columns predicted category. As we see from figure \ref{confusion matrix} We tried to predict category for 21 movies and got 1 criminals, 1 science, 19 movies prediction. In overall such approach reach above $90 \%$  recall and $90 \%$ precision.
+Classification performance is measured using confusion matrix where rows are true category and columns predicted category. The  Figure \ref{confusion matrix} shows the results of categories prediction. For example  for 21 movies  got 1 criminals, 1 science and 19 movies predictions. In overall such approach reach above $90 \%$  recall and $90 \%$ precision.
 \begin{figure}[H]
   \includegraphics[width=\linewidth]{images/confussion_matrix.pdf}
   \caption{Classification performance}
@@ -134,7 +134,7 @@ Latent semantic analysis (LSA) is a technique in natural language processing, in
 \label{LSA}
 A =U\Sigma V^T
 \end{equation}
-Let $A$ be a $m \times n$ matrix with column vectors $a_1, a_2, ..., a_n$. In the SVD of, U will be $m \times m$, $\Sigma$ will be $m \times n$ and $V$ will be $n \times n$. Dimensionality reduction by keeping  $k$ biggest  values from $\Sigma$ i.e $\sigma_1,..,\sigma_k \neq 0$; $\sigma_{r+1},...,\sigma_n = 0$. Therefore columns of $U$ beyond $k^{th}$ column and rows of V beyond $k^{th}$ row do not contribute to A and are usually omitted, leaving U an  $m \times k$ matrix, $\Sigma$ and  $k \times k$ diagonal matrix and $V$ an  $r \times n$ matrix. After hat terms are represented by the row vectors of the $m \times k$ matrix \ref{hiddenterms}
+Let $A$ be a $m \times n$ matrix with column vectors $a_1, a_2, ..., a_n$. In the SVD of, U will be $m \times m$, $\Sigma$ will be $m \times n$ and $V$ will be $n \times n$. Dimensionality reduction is done by keeping  $k$ biggest  values from $\Sigma$ i.e $\sigma_1,..,\sigma_k \neq 0$; $\sigma_{r+1},...,\sigma_n = 0$. Therefore columns of $U$ beyond $k^{th}$ column and rows of V beyond $k^{th}$ row do not contribute to A and are usually omitted, leaving U an  $m \times k$ matrix, $\Sigma$ and  $k \times k$ diagonal matrix and $V$ an  $r \times n$ matrix. After that terms are represented by the row vectors of the $m \times k$ matrix \ref{hiddenterms}
 
 \begin{equation}
 \label{hiddenterms}
@@ -150,54 +150,21 @@ Topics can represented as rows from matrix $U^T$ $(k \times m)$, where rows are 
 \begin{enumerate}
 \item Extract first $x$ rows (components).
 \item Sort each row weights in descending order.
-\item Extract first $y$ highest weights and map them to the known tokens.
+\item Extract first $y$ highest weights and map them to the tokens we know.
 \end{enumerate}
 
 
- Example below shows $6$ components with $10$ tokens for each component \ref{fig:MainComponents}. From these results we can detect most important words and intuitively guess topic.
-
+ Results figure \ref{main_terms_components} shows $6$ components with $10$ tokens for each component. From these results we can detect most important words and intuitively guess topic for each principal component. For example 3 principal component store information about  sports and music whereas 5 principal component store information about criminals.
 
 
 \begin{figure}[H]
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{images/0_component_lsa.pdf}
-		\caption{Movies, Music}
-		\label{fig:sfig1}
-	\end{subfigure}%
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{images/1_component_lsa.pdf}
-		\caption{Movies, Criminals}
-		\label{fig:sfig2}
-	\end{subfigure}
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{images/2_component_lsa.pdf}
-		\caption{Movies, Criminals}
-		\label{fig:sfig3}
-	\end{subfigure}
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{images/3_component_lsa.pdf}
-		\caption{Music, Sportsi}
-		\label{fig:sfig4}
-	\end{subfigure}
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{images/4_component_lsa.pdf}
-		\caption{Science}
-		\label{fig:sfig5}
-	\end{subfigure}
-	\begin{subfigure}{.6\textwidth}
-		\centering
-		\includegraphics[width=1\linewidth]{images/5_component_lsa.pdf}
-		\caption{Criminals}
-		\label{fig:sfig6}
-	\end{subfigure}
-	\caption{Main first 6 components}
-	\label{fig:MainComponents}
+  \centering
+  \includegraphics[scale=0.4]{images/main_term_components.pdf}
+  \caption{Main term components}
+  \label{main_terms_components}
 \end{figure}
+
+
 
 
 \end{document}

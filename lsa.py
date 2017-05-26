@@ -58,24 +58,27 @@ class LSA(object):
     def _load_pickle(self, pickle_name):
         pickle_obj = pickle.load( open( "pickles/{}".format(pickle_name), "rb" ))       
         return pickle_obj
-    
+
+            
     def plot_main_components(self):
         # http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/
+
+        components_numb = len(self.components)
+        terms_numb = len(self.components[0])
+        fig_col = 2
+        fig_row = components_numb // 2
+        f, ax = pyplot.subplots(fig_row, fig_col, figsize=(15, 20))
         terms_count = len(self.components[0])
         for i, latent in enumerate(self.components):
-            # Display these terms and their weights as a horizontal bar graph.    
-            # The horizontal bar graph displays the first item on the bottom; reverse
-            # the order of the terms so the biggest one is on top.
             weights = [np.abs(term[1]) for term in latent]
             terms = [term[0] for term in latent]
             positions = np.arange(terms_count) + .5    # the bar centers on the y axis
-            pyplot.figure(i, figsize=(8,6))
-            pyplot.barh(positions, weights, align='center')
-            pyplot.yticks(positions, terms)
-            pyplot.xlabel('Weight')
-            pyplot.title('Strongest terms for component %d' % (i))
-            pyplot.savefig("visualizations/{}_component_lsa.pdf".format(i))
-            pyplot.show()
+            ax[i//2, i%2].barh(positions, weights, align='center', alpha=0.5)
+            ax[i//2, i%2].set_yticks(positions)
+            ax[i//2, i%2].set_yticklabels(terms, rotation="horizontal")                         
+            ax[i//2, i%2].set_title("%s principal component"%i)
+        f.subplots_adjust(hspace=0.5)
+        pyplot.savefig("visualizations/main_term_components.pdf")
 
     def explore_bag_of_words_matrix(self):
         doc_means = self.bag_of_words_matrix.mean(1)
@@ -201,7 +204,7 @@ if __name__ == "__main__":
     Plotting main token components
     """
     
-    lsa_instance.generate_components(components_numb=10, topn=10)
+    lsa_instance.generate_components(components_numb=6, topn=10)
     components = lsa_instance.components
     lsa_instance.plot_main_components()
     
@@ -209,9 +212,9 @@ if __name__ == "__main__":
     """
     Searching query example
     """
-    suited_docs = lsa_instance.search_query("apdovanojam automobil")
-    for suited_doc in suited_docs:
-        print(lsa_instance.documents_titles[suited_doc])
+#    suited_docs = lsa_instance.search_query("apdovanojam automobil")
+#    for suited_doc in suited_docs:
+#        print(lsa_instance.documents_titles[suited_doc])
     
 
     
