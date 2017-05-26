@@ -14,5 +14,6 @@ true category and columns predicted category. Furthermore such approach reach ab
 
 # Topics extraction
 Implementation details and futher information is stored at paper/paper.pdf
+
 Main results are presnted below:
 ![GitHub Logo](/visualizations/main_term_components.png)
