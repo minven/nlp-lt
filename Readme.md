@@ -1,8 +1,4 @@
-Main intention of this research is to study and learn natural language
-processing (NLP) principals for Lithuanian language. It is interesting to
-implement classical nlp methods and see how they work on it. In this
-work text classification, topics extraction, search query, clustering ideas
-were implemented.
+The main intention of this research is to study and learn natural language processing (NLP) principals  for Lithuanian language. It is interesting to analyze classical NLP methods and see how they work on it, so in this work I implemented text classification, topics extraction, search query and clustering ideas
 
 # Classification
 Implementation details and futher information is stored at paper/paper.pdf
