@@ -76,9 +76,9 @@ class LSA(object):
             ax[i//2, i%2].barh(positions, weights, align='center', alpha=0.5)
             ax[i//2, i%2].set_yticks(positions)
             ax[i//2, i%2].set_yticklabels(terms, rotation="horizontal")                         
-            ax[i//2, i%2].set_title("%s principal component"%i)
+            ax[i//2, i%2].set_title("%s principal component"%(i+1))
         f.subplots_adjust(hspace=0.5)
-        pyplot.savefig("visualizations/main_term_components.pdf")
+        pyplot.savefig("visualizations/main_term_components.png")
 
     def explore_bag_of_words_matrix(self):
         doc_means = self.bag_of_words_matrix.mean(1)

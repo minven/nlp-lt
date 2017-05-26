@@ -9,7 +9,7 @@ true category and columns predicted category. Furthermore such approach reach ab
 ![GitHub Logo](/visualizations/confussion_matrix.png)
 
 # Topics extraction
-Figure shows $6$ components with $10$ tokens for each component. From these results we can detect most important words and intuitively guess topic for each principal component. For example 3 principal component store information about  sports and music whereas 5 principal component store information about criminals.
+Figure shows $6$ components with $10$ tokens for each component. From these results we can detect most important words and intuitively guess topic for each principal component. For example 4 principal component store information about  sports and music whereas 6 principal component store information about criminals.
 
 Main results are presented below:
 ![GitHub Logo](/visualizations/main_term_components.png)
