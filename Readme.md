@@ -13,3 +13,19 @@ Figure shows 6 components with 10 tokens for each component. From these results 
 
 Main results are presented below:
 ![GitHub Logo](/visualizations/main_term_components.png)
+
+
+# Search query
+
+Search is based on http://webhome.cs.uvic.ca/~thomo/svd.pdf article, where lsa is applied to find related documents using not only exact query similarities, but deeper relations between documents.
+![GitHub Logo](/visualizations/search_query_example.png)
+## Example
+Query = "švietim apdovanojam"
+
+Result:
+
+* ['Imasi mokslininkų algų: siūlo kelti iki 50 proc.']
+* ['Įteiktos 6 Mokslo premijos']
+* ['Lietuvoje į susitikimą kviečia Nobelio premijos laureatas']
+* ['100 tūkst. eurų išdalins populiarinantiems mokslą']
+* ['V. Vaičaitis. Konkursinis mokslo finansavimas ar pasityčiojimas iš mokslininkų?']
