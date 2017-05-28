@@ -134,19 +134,19 @@ Latent semantic analysis (LSA) is a technique in natural language processing, in
 \label{LSA}
 A =U\Sigma V^T
 \end{equation}
-Let $A$ be a $m \times n$ matrix with column vectors $a_1, a_2, ..., a_n$. In the SVD of, U will be $m \times m$, $\Sigma$ will be $m \times n$ and $V$ will be $n \times n$. Dimensionality reduction is done by keeping  $k$ biggest  values from $\Sigma$ i.e $\sigma_1,..,\sigma_k \neq 0$; $\sigma_{r+1},...,\sigma_n = 0$. Therefore columns of $U$ beyond $k^{th}$ column and rows of V beyond $k^{th}$ row do not contribute to A and are usually omitted, leaving U an  $m \times k$ matrix, $\Sigma$ and  $k \times k$ diagonal matrix and $V$ an  $r \times n$ matrix. After that terms are represented by the row vectors of the $m \times k$ matrix \ref{hiddenterms}
+Let $A$ be a $m \times n$ matrix with column vectors $a_1, a_2, ..., a_n$. In the SVD of, U will be $m \times m$, $\Sigma$ will be $m \times n$ and $V$ will be $n \times n$. Dimensionality reduction is done by keeping  $k$ biggest  values from $\Sigma$ i.e $\sigma_1,..,\sigma_k \neq 0$; $\sigma_{r+1},...,\sigma_n = 0$. Therefore columns of $U$ beyond $k^{th}$ column and rows of V beyond $k^{th}$ row do not contribute to A and are usually omitted, leaving U an  $m \times k$ matrix, $\Sigma$ and  $k \times k$ diagonal matrix and $V$ an  $r \times n$ matrix. After that documents are represented by the row vectors of the $m \times k$ matrix \ref{hiddenterms}
 
 \begin{equation}
 \label{hiddenterms}
 Q = U_k\Sigma_k
 \end{equation}
-whereas the documents by the column vectors the $k \times n$ matrix \ref{hiddendocs}
+whereas the tokens by the column vectors the $k \times n$ matrix \ref{hiddendocs}
  \begin{equation}
 \label{hiddendocs}
 W =\Sigma_kV_k^T
 \end{equation}
 
-Topics can represented as rows from matrix $U^T$ $(k \times m)$, where rows are principal components, columns are tokens. 
+Topics can be represented as rows from matrix $U^T$ $(k \times m)$, where rows are principal components, columns are tokens. 
 \begin{enumerate}
 \item Extract first $x$ rows (components).
 \item Sort each row weights in descending order.
@@ -163,6 +163,53 @@ Topics can represented as rows from matrix $U^T$ $(k \times m)$, where rows are 
   \caption{Main term components}
   \label{main_terms_components}
 \end{figure}
+
+\section{Search query}
+Suppose TFIDF matrix  rows are token, columns - document id, values - TFIDF statistic and apply SVD for this matrix. Usyally matrix dimension is reduced to $k=100-200$. Now token matrix is from equation \ref{hiddenterms} and documents matrix from equation \ref{hiddendocs}. Q matrix dimensions are - (tokens_numb, k) and W matrix dimensions are - (documents_numb, k). Now each token can represented by row of Q matrix and we can construct search queries by taking words from matrix Q and calculating query mean value. Most similar documents to search query are found by calculating cosine similarity between query representation and matrix W. 
+
+\subsection{Example}
+q1 = ["liūdn"], q2 = ["diev"], q3["diev liūdn"]. Token "liūdn" was found in $13$ documents with average $TFIDF =0.011$ whereas "diev" in $12$ documents with average $TFIDF=0.025$. In this case token "diev" is more "important". Below are presented titles of documents most similar to queries.\\
+
+q1 most similar documents:
+
+['Jausmingą koncertą surengusi M. Linkytė gerbėjams padovanojo dalelę savo širdies']
+
+['M. Linkytė atšaukia 6 suplanuotus koncertus: kalti organizatoriai']
+
+['Filmo „Penkiasdešimt tamsesnių atspalvių“ recenzija: vienas iš tų atvejų, kai jaučiama svetima gėda']
+
+['Filmo „Skambutis 3“ recenzija: agonija akims ir sielai kiekvienam siaubo žanro gerbėjui']
+
+['„Greiti ir įsiutę 8“ recenzija: 250 mln. dolerių kainavusi juosta virto nepabostančia pramoga kino salėje']\\
+
+q2 most similar documents:
+
+['M. Scorseses dramoje „Tyla“ suvaidinęs L. Neesonas prakalbo apie savo ypatingus ryšius su Dievu']
+
+['„Trakų“ žaidėjas I. Plūkas: faktas, kad dar nesame panašūs į save']
+
+['Trileryje „Nešdintis visu greičiu“ filmavęsis B. Kingsley: tuo metu visi mano sapnai baigdavosi sprogimais']
+
+['Berlynalės favoritais laikomi komedija apie pabėgėlius, translyčių asmenų meilės istorija']
+
+['Lietuvos vyrų rankinio lygos bronzą iškovojo Kauno „Granitas-Karys“']\\
+
+q3 most similar documents:
+
+['M. Scorseses dramoje „Tyla“ suvaidinęs L. Neesonas prakalbo apie savo ypatingus ryšius su Dievu']
+
+['„Trakų“ žaidėjas I. Plūkas: faktas, kad dar nesame panašūs į save']
+
+['Filmo „Pradink“ recenzija: juosta, skirta ne silpnų nervų žiūrovams']
+
+['Berlynalės favoritais laikomi komedija apie pabėgėlius, translyčių asmenų meilės istorija']
+
+['Trileryje „Nešdintis visu greičiu“ filmavęsis B. Kingsley: tuo metu visi mano sapnai baigdavosi sprogimais']
+
+
+Small comment regarding to q3 here "diev" is more important than "liūdn". In first most similar document ['M. Scorseses dramoje „Tyla“ suvaidinęs L. Neesonas prakalbo apie savo ypatingus ryšius su Dievu'] token "diev" is mention a lot of time and furthermore this token is not popular among corpus of documents. Also second most similar document ['„Trakų“ žaidėjas I. Plūkas: faktas, kad dar nesame panašūs į save'] talks a lot about "diev". Rest documents interpretation is not so straightforward maybe there exists relations such as genre, actors between most similar documents.
+
+\section{Clustering}
 
 
 

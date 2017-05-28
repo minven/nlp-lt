@@ -119,7 +119,7 @@ class LSA(object):
         similarities = cosine_similarity(query_representation, self.documents_representation)
         topN_documents =[self.documents_mapping[index] for index in topN(similarities[0])] 
         return topN_documents
-        # compute cosine distance between query_representation and each document 
+
     
     def generate_components(self, components_numb, topn):
         components = []
@@ -212,12 +212,14 @@ if __name__ == "__main__":
     """
     Searching query example
     """
-#    suited_docs = lsa_instance.search_query("apdovanojam automobil")
-#    for suited_doc in suited_docs:
-#        print(lsa_instance.documents_titles[suited_doc])
+    suited_docs = lsa_instance.search_query("liūdn")
+    for suited_doc in suited_docs:
+        print(lsa_instance.documents_titles[suited_doc])
+        
+    bag_of_words_matrix  = lsa_instance.bag_of_words_df
     
-
-    
+#bag_of_words_matrix[bag_of_words_matrix.diev != 0.0]["diev"].mean()
+#    
     
     
     
